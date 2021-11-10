@@ -1,0 +1,32 @@
+---
+title: "Presentation_html-ioslides"
+author: "Daniel Rodríguez"
+date: "11/10/2021"
+output:
+   ioslides_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## R Markdown - ioslides html presentation
+
+This is an R Markdown presentation that renders into an ioslides html presentation file.
+A new slide starts at each first or second level header. Alternatively, a manual slide break can be inserted with a horizontal rule (``***``), just as it will be done here.
+
+***
+Bullets can created as in any RMarkdown document.
+
+Also, with | a subtitle can be added to a slide.
+
+This is shown in the next slide.
+
+## Bullets | A subtitle for a slide
+
+- Bullet 1
+  - Bullet 1.1
+    - Bullet 1.1.1
+- Bullet 2
+- Bullet 3
+
