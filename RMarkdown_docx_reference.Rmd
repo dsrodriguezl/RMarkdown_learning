@@ -1,0 +1,32 @@
+---
+title: "RMarkdown_docx_reference"
+author: "Daniel Rodríguez"
+date: "11/9/2021"
+output:
+   word_document:
+    toc: yes
+    toc_depth: 5
+    df_print: kable
+    reference_docx: "RMarkdown_docx_reference-01.docx"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+```
+
+# Heading 1
+## Heading 2
+### Heading 3
+#### Heading 4
+##### Heading 5
+Paragraph 1 of normal text, it is extended to two lines in purpose to check the format of the space in between lines of the same paragraph.
+
+Paragraph 2 of normal text, it is extended to two lines in purpose to check the format of the space in between lines of the same paragraph.
+
+# Making a table
+
+With the *"df_print: kable"*  any data frame that is printed inside the document is printed as a table using *"knitr::kable()"*.
+For example by printing the head of the data frame of the **"cars"** data set, which is printed here with the *`` `r ` ``*  inline code command:
+
+`r cars %>% head`
