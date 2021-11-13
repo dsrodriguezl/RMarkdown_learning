@@ -1,7 +1,14 @@
 ---
 title: "RMarkdown_docx_reference"
 author: "Daniel Rodríguez"
-date: "11/9/2021"
+date: "`r Sys.Date()`"
+abstract: | 
+    # Abstract
+    This is the abstract.
+    
+    It consists of two paragraphs.
+    
+    **Keywords:** Word 1, Word 2, Word 3.
 output:
    word_document:
     toc: yes
