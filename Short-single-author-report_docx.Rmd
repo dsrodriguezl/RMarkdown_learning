@@ -1,12 +1,11 @@
 ---
-title: "RMarkdown_docx_reference"
+title: "Template for a short single author DOCX report in RMarkdown"
 author: "Daniel Rodríguez"
 date: "`r Sys.Date()`"
 abstract: | 
     # Abstract
-    This is the abstract.
-    
-    It consists of two paragraphs.
+    This DOCX template is meant for short reports with no figure and table
+    numbering, and with a single author.
     
     **Keywords:** Word 1, Word 2, Word 3.
 output:
@@ -14,7 +13,7 @@ output:
     toc: yes
     toc_depth: 5
     df_print: kable
-    reference_docx: "RMarkdown_docx_reference-01.docx"
+    reference_docx: "Short-single-author-report_docx-ref-01.docx"
 csl: elsevier-harvard.csl
 bibliography: references.bib
 ---
