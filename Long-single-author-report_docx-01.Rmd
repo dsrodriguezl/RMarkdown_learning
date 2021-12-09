@@ -1,0 +1,78 @@
+---
+title: "Template for a short single author DOCX report in RMarkdown"
+author: "Daniel Rodríguez"
+date: "`r Sys.Date()`"
+abstract: | 
+    # Abstract
+    This DOCX template is meant for short reports with no figure and table
+    numbering, and with a single author.
+    
+    **Keywords:** Word 1, Word 2, Word 3.
+output:
+   bookdown::word_document2:
+    toc: yes
+    toc_depth: 5
+    reference_docx: "Single-author-report_docx-ref-01.docx"
+csl: elsevier-harvard.csl
+bibliography: references.bib
+---
+
+```{r setup01, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+```
+
+```{r setup02}
+knit_print.data.frame <- function(x, ...) {
+  res <- paste(c("", "", knitr::kable(x, caption = caption)), collapse = "\n")
+  knitr::asis_output(res)
+}
+
+registerS3method(
+  "knit_print", "data.frame", knit_print.data.frame,
+  envir = asNamespace("knitr")
+)
+```
+
+# Heading 1
+## Heading 2
+### Heading 3
+#### Heading 4
+##### Heading 5
+Paragraph 1 of normal text, it is extended to two lines in purpose to check the format of the space in between lines of the same paragraph.
+
+Paragraph 2 of normal text, it is extended to two lines in purpose to check the
+format of the space in between lines of the same paragraph.
+
+Citations can be inserted in text, with ease by using the Zotero citation key(s)
+(`@citation_key`) of the source(s) to cite. A citation at the end of the
+sentence is easily applied with `[@citation_key]`. For example by citing my own
+first paper at the end of this sentence
+[@rodriguezleonVariacionAbundanciaRelativa2019]. The previous sentence looks
+like this **`For example by citing my own first paper by the end of this
+sentence [@rodriguezleonVariacionAbundanciaRelativa2019]`** in the RMarkdown
+document. Meanwhile, a citation as the noun of the sentence can be inserted by
+using `@citation_key`. Here, @rodriguezleonVariacionAbundanciaRelativa2019 is
+again an example of this, which looks like this
+**`rodriguezleonVariacionAbundanciaRelativa2019 is again an example of this`**
+in the RMarkdown document.
+
+# Making a table
+
+With the *"df_print: kable"* any data frame that is printed inside the document
+is printed as a table using *"knitr::kable()"*. For example by printing the head
+of the data frame of the **"cars"** data set, which is printed here with the *```r ` ``* inline code command:
+
+```{r}
+caption <- "Head of cars dataset data frame"
+cars %>% head
+```
+
+For the bibliography, it is only required to have a last section in the document
+with the "Bibliography"or "References" title. The bibliography will by
+automatically inserted from the specified BibTex (.bib) file in the YAML section
+of the RMarkdown document (e.g. `` bibliography: references.bib ``), which
+should be stored in the same directory folder as the corresponding RMarkdown
+document file.
+
+# References
