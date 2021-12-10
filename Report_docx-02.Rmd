@@ -1,0 +1,97 @@
+---
+title: "Template for a DOCX report in RMarkdown"
+author:
+  - Author One, author info.^[author info., e-mail@example.org]
+date: "`r Sys.Date()`"
+abstract: | 
+    # Abstract
+    This DOCX template is meant for longer reports with figure and table 
+    numbering.
+    
+    **Keywords:** Word 1, Word 2, Word 3.
+output:
+   bookdown::word_document2:
+    toc: yes
+    toc_depth: 5
+    reference_docx: Report_docx-ref.docx
+csl: elsevier-harvard.csl
+bibliography: references.bib
+---
+# Establishing the settings for the Rmd document
+On a normal Rmd document the setup code tends to be in one(or several) setup
+code chunk(s) that are not rendered inside the final output file, by using the
+``include = FALSE`` chunk option. However, here the setup chunks are included in
+the output document to show there the structure of the Rmd document more
+explicitly.
+
+The following chunk shows the typical setup chunk of an Rmd document, setting the `echo` chunk option to `TRUE`inside the Rmd document. Here I also load the packages I know will be used along the document (e.g. Tidyverse (or specific tidyverse packages), and here),.
+```{r setup, message = FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+```
+
+The following chunk defines a new function for printing data frames within the
+Rmd document, modifying the default options of the ``knitr::kable()`` function.
+The new data frame printing function needs two objects to work. It requires the
+data frame to print, which is automatically given to the function when a data
+frame is printed within the Rmd document, and a caption. The latter has to be
+defined by storing the caption text in a object called caption, which will be
+used by the function to produce the table caption.
+
+```{r setup02}
+knit_print.data.frame <- function(x, ...) {
+  res <- paste(c("", "", knitr::kable(x, caption = caption)), collapse = "\n")
+  knitr::asis_output(res)
+}
+```
+
+The chunk below registers the method of the previously defined
+`knit_print.data.frame` function under the `knit_print` function.
+```{r setup03}
+registerS3method(
+  "knit_print", "data.frame", knit_print.data.frame,
+  envir = asNamespace("knitr")
+)
+```
+
+# Heading 1
+## Heading 2
+### Heading 3
+#### Heading 4
+##### Heading 5
+Paragraph 1 of normal text, it is extended to two lines in purpose to check the
+format of the space in between lines of the same paragraph.
+
+
+Paragraph 2 of normal text, it is extended to two lines in purpose to check the
+format of the space in between lines of the same paragraph.
+
+Citations can be inserted in text, with ease by using the Zotero citation key(s)
+(`@citation_key`) of the source(s) to cite. A citation at the end of the
+sentence is easily applied with `[@citation_key]`. For example by citing my own
+first paper at the end of this sentence
+[@rodriguezleonVariacionAbundanciaRelativa2019]. The previous sentence looks
+like this **`For example by citing my own first paper by the end of this
+sentence [@rodriguezleonVariacionAbundanciaRelativa2019]`** in the RMarkdown
+document. Meanwhile, a citation as the noun of the sentence can be inserted by
+using `@citation_key`. Here, @rodriguezleonVariacionAbundanciaRelativa2019 is
+again an example of this, which looks like this
+**`rodriguezleonVariacionAbundanciaRelativa2019 is again an example of this`**
+in the RMarkdown document.
+
+# Making a table
+
+As we defined and register the function `knit_print.data.frame` on the setup chunks at the beginning of the document, any data frame that is printed inside the document is printed as a table using the `knit_print.data.frame`, which is a modifed version of the `knitr::kable()` function. For example by printing the head of the data frame of the **"cars"** data set.
+```{r}
+caption <- "Head of cars dataset data frame"
+cars %>% head
+```
+
+For the bibliography, it is only required to have a last section in the document
+with the "Bibliography"or "References" title. The bibliography will by
+automatically inserted from the specified BibTex (.bib) file in the YAML section
+of the RMarkdown document (e.g. `` bibliography: references.bib ``), which
+should be stored in the same directory folder as the corresponding RMarkdown
+document file.
+
+# References
