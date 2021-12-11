@@ -2,6 +2,7 @@
 title: "Template for a DOCX report in RMarkdown"
 author:
   - Author One, author info.^[author info., e-mail@example.org]
+  - Author Two, author info.^[author info., e-mail@example.org]
 date: "`r Sys.Date()`"
 abstract: | 
     # Abstract
@@ -10,7 +11,11 @@ abstract: |
     
     **Keywords:** Word 1, Word 2, Word 3.
 output:
-   bookdown::word_document2:
+  bookdown::pdf_document2:
+    fontfamily: calibri
+    toc: yes
+    toc_depth: 5
+  bookdown::word_document2:
     toc: yes
     toc_depth: 5
     reference_docx: Report_docx-ref.docx
@@ -59,6 +64,7 @@ registerS3method(
 ### Heading 3
 #### Heading 4
 ##### Heading 5
+
 Paragraph 1 of normal text, it is extended to two lines in purpose to check the
 format of the space in between lines of the same paragraph.
 

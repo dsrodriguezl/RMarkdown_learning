@@ -11,6 +11,7 @@ abstract: |
     
     **Keywords:** Word 1, Word 2, Word 3.
 output:
+   #pdf_document:
    word_document: 
      toc: yes
      toc_depth: 5
