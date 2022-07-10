@@ -89,6 +89,15 @@ caption <- "Head of cars dataset data frame"
 cars %>% head
 ```
 
+# Including figures
+
+
+```{r pressure, echo=FALSE}
+#| pressure, fig.cap = "Plot of temperature vs pressure"
+plot(pressure)
+```
+
+
 For the bibliography, it is only required to have a last section in the document
 with the "Bibliography"or "References" title. The bibliography will by
 automatically inserted from the specified BibTex (.bib) file in the YAML section
