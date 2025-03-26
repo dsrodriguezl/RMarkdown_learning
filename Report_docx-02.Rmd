@@ -11,10 +11,10 @@ abstract: |
     
     **Keywords:** Word 1, Word 2, Word 3.
 output:
-  bookdown::pdf_document2:
-    fontfamily: calibri
-    toc: yes
-    toc_depth: 5
+  # bookdown::pdf_document2:
+  #   fontfamily: calibri
+  #   toc: yes
+  #   toc_depth: 5
   bookdown::word_document2:
     toc: yes
     toc_depth: 5
@@ -107,5 +107,14 @@ automatically inserted from the specified BibTex (.bib) file in the YAML section
 of the RMarkdown document (e.g. `` bibliography: references.bib ``), which
 should be stored in the same directory folder as the corresponding RMarkdown
 document file.
+
+# Making a list
+
+- a
+  - b
+    - c
+      - d
+        - e
+          - f
 
 # References
